@@ -1,6 +1,3 @@
-# hello-world
+# BSTA 665 - 01 Final Project
 
-Hi Mona's friends!
-
-mwong-70 here. Write a bit about yourself.
-Tacos for everyone.
+This repo was created for the Final Project in a Survival Analysis course.

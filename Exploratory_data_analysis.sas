@@ -10,14 +10,33 @@ run;
 options validvarname=any;
 proc import
         file=cgd
-        out=work.cgd
+        out=cgd_raw
         replace
         dbms=csv
     ;
-    getnames=no;
+    getnames=yes;
 run;
 
+/*
+Drop column VAR1 since Patient = VAR1.
+COMPARE procedure didn't work since values in var1 was stored as character.
+*/
+data cgd_clean;
+    drop var1;
+    set cgd_raw;
+run;
 
+proc contents 
+        data=cgd_raw;
+        order=varnum
+    ;
+run;
+
+proc sql;
+    select 
+data cgd_raw;
+    drop " ";
+    set cgd_raw;
 
 ods html;
 ods graphics on;

@@ -26,31 +26,22 @@ data cgd_clean;
     set cgd_raw;
 run;
 
-proc contents 
-        data=cgd_raw;
-        order=varnum
-    ;
-run;
 
-proc sql;
-    select 
-data cgd_raw;
-    drop " ";
-    set cgd_raw;
 
 ods html;
 ods graphics on;
-
-
-
 /* Explore variable types using contents procedure */
 proc contents
-        data=cgd
+        data=cgd_clean
         order=varnum
     ;
     title 'Contents Using the ORDER= Option';
 run;
 title;
+
+
+
+
 
 /* Exploratory analysis using lifetest procedure */
 * non parametric;
@@ -65,10 +56,6 @@ proc lifetest <options>;
     test variables ; 
 run;
 */
-
-proc lifetest
-        data=cgd plots=(s,ls,lls);
-        time 
 
 
 ods html close;
